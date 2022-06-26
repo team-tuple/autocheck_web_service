@@ -31,12 +31,26 @@
                 <h3 class="text-white font-weight-bold">{{ error_message }}</h3>
                 </br>
                 </br>
-                <h5 class="text-white">5초 후 메인페이지로 이동합니다.</h5>
+                <h5 class="text-white"> 5초 후 메인페이지로 이동합니다.</h5>
+                <progress value="0" max="510" id="progressBar" style="height: 30px; width: 800;"></progress>
             </center>
             </br>
             </br>
             </br>
 
         </div>
+        <script>
+            var timeleft = 510;
+                var downloadTimer = setInterval(function(){
+               if(timeleft <= 0){
+               clearInterval(downloadTimer);
+                       }
+                     document.getElementById("progressBar").value = 510 - timeleft;
+              timeleft -= 1;
+                }, 10);
+
+               
+                 
+        </script>
     </body>
 </html>
