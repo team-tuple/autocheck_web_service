@@ -1,0 +1,5 @@
+pip
+flask
+pymysql
+aiomysql
+schedule
