@@ -3,3 +3,4 @@ flask
 pymysql
 aiomysql
 schedule
+flask[async]
