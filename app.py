@@ -38,8 +38,8 @@ async def success():
                 #print(result4[0][0])
                 result3 = result2[0][0] + 1
                 pass
-            sql = f'INSERT INTO autocheck(indexrow, name, birth, region, school, schooltype, password) values (%s, %s, %s, %s, %s, %s, %s);'
-            await cur.execute(sql, (result3, result['이름'], result['생년월일'], result['지역'], result['학교'], result['학교종류'], result['비밀번호']))
+            sql3 = f'INSERT INTO autocheck(indexrow, name, birth, region, school, schooltype, password) values (%s, %s, %s, %s, %s, %s, %s);'
+            await cur.execute(sql3, (result3, result['이름'], result['생년월일'], result['지역'], result['학교'], result['학교종류'], result['비밀번호']))
             await db.commit()
             message="성공적으로 등록되었습니다!"
             return render_template("result.html", message=message)
