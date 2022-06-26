@@ -15,8 +15,8 @@ def job():
    result1 = cur.fetchall()
    print(result1)
    for i in range(result1[0][0]):
-    il = i + 1
-    sql2= f"SELECT * FROM autocheck WHERE indexrow = {il};"
+    count = i + 1
+    sql2= f"SELECT * FROM autocheck WHERE indexrow = {count};"
     cur.execute(sql2)
     result2 = cur.fetchall()
     data = selfcheck(result2[0][1],result2[0][2],result2[0][3],result2[0][4],result2[0][5],result2[0][6],quicktestresult=QuickTestResult['none'])
