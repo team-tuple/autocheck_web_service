@@ -3,11 +3,10 @@ import schedule
 import time
 import random
 import pymysql
-import asyncio
 from hcskr.hcskr import selfcheck, QuickTestResult
 
 def job():
-   print("scheduler started")
+   print("job started")
    db= pymysql.connect(host=os.getenv('db_host'), port=os.getenv('db_port'), user=os.getenv('db_us'), password=os.getenv('db_ps'), db=os.getenv('db_database'), charset='utf8')
    cur= db.cursor()
    sql1= "SELECT COUNT(*) FROM autocheck;"
@@ -34,5 +33,5 @@ schedule_next_run()
 
 while True:
    schedule.run_pending()
-   time.sleep(1)
+   time.sleep(5)
     
