@@ -22,7 +22,6 @@ async def success():
         db = await aiomysql.connect(host=os.getenv('db_host'), port=os.getenv('db_port'), user=os.getenv('db_us'), password=os.getenv('db_ps'), db=os.getenv('db_database'), charset='utf8')
         cur= await db.cursor()
     
-
         result=request.form
         check = await asyncSelfCheck(result["이름"], result["생년월일"], result["지역"], result["학교"], result["학교종류"], result["비밀번호"], quicktestresult=QuickTestResult['none'])
         if check["error"]==False:
@@ -38,12 +37,12 @@ async def success():
                 else:
                     sql2 = f"SELECT COUNT(*) FROM autocheck"
                     await cur.execute(sql2)
-                    result4 = await cur.fetchall()
+                    result2 = await cur.fetchall()
                     #print(result4[0][0])
-                    result5 = result4[0][0] + 1
+                    result3 = result2[0][0] + 1
                     pass
             sql = f'INSERT INTO autocheck(indexrow, name, birth, region, school, schooltype, password) values (%s, %s, %s, %s, %s, %s, %s);'
-            await cur.execute(sql, (result5, result['이름'], result['생년월일'], result['지역'], result['학교'], result['학교종류'], result['비밀번호']))
+            await cur.execute(sql, (result3, result['이름'], result['생년월일'], result['지역'], result['학교'], result['학교종류'], result['비밀번호']))
             await db.commit()
             message="성공적으로 등록되었습니다!"
             return render_template("result.html", message=message)
