@@ -1,10 +1,8 @@
 import os
-import flask, json, aiomysql, random
-from flask import *
-from dotenv import load_dotenv
+import json
+import aiomysql
 from hcskr import asyncSelfCheck, QuickTestResult
-
-load_dotenv()
+from flask import *
 autocheck=Flask(__name__)
 
 @autocheck.route("/")
@@ -19,7 +17,7 @@ def privacy():
 async def success():
     if request.method=="POST":
         #db set
-        db = await aiomysql.connect(host=os.getenv('db_host'), port=os.getenv('db_port'), user=os.getenv('db_us'), password=os.getenv('db_ps'), db=os.getenv('db_database'), charset='utf8')
+        db = await aiomysql.connect(host= None, port= None, user= None, password= None, db= None, charset='utf8')
         cur= await db.cursor()
         result=request.form
         check = await asyncSelfCheck(result["이름"], result["생년월일"], result["지역"], result["학교"], result["학교종류"], result["비밀번호"], quicktestresult=QuickTestResult['none'])
@@ -50,4 +48,4 @@ async def success():
 
 
 if __name__ == '__main__':
-    autocheck.run(debug=false)
+    autocheck.run(debug=True)

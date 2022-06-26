@@ -7,7 +7,7 @@ from hcskr.hcskr import selfcheck, QuickTestResult
 
 def job():
    print("job started")
-   db= pymysql.connect(host=os.getenv('db_host'), port=os.getenv('db_port'), user=os.getenv('db_us'), password=os.getenv('db_ps'), db=os.getenv('db_database'), charset='utf8')
+   db= pymysql.connect(host= None, port= None, user= None, password= None, db= None, charset='utf8')
    cur= db.cursor()
    sql1= "SELECT COUNT(*) FROM autocheck;"
    cur.execute(sql1)
