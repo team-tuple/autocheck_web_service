@@ -6,11 +6,11 @@ from flask import *
 autocheck=Flask(__name__)
 
 @autocheck.route("/")
-def index():
+async def index():
     return render_template("index.html")
 
 @autocheck.route("/privacy")
-def privacy():
+async def privacy():
     return render_template("privacy.html")
 
 @autocheck.route("/registration", methods=["POST"])
@@ -33,7 +33,6 @@ async def success():
                 sql2 = f"SELECT COUNT(*) FROM autocheck"
                 await cur.execute(sql2)
                 result2 = await cur.fetchall()
-                #print(result4[0][0])
                 result3 = result2[0][0] + 1
                 pass
             sql3 = f'INSERT INTO autocheck(indexrow, name, birth, region, school, schooltype, password) values (%s, %s, %s, %s, %s, %s, %s);'
@@ -44,8 +43,6 @@ async def success():
         elif check["error"]==True:
             message=f"등록에 실패하였습니다!"
             return render_template("result.html", result=result, message=message, error_message=check['message'])
-
-
 
 if __name__ == '__main__':
     autocheck.run(debug=True)
